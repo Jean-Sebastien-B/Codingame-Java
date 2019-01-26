@@ -1,0 +1,68 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+	public static void main(String args[]) {
+		@SuppressWarnings("resource")
+		Scanner in = new Scanner(System.in);
+		String MESSAGE = in.nextLine();
+		
+		Solution solution = new Solution();
+		
+		System.out.println(solution.ConvertToUnary(MESSAGE));
+		
+	}
+
+	public String ConvertToUnary(String message) {
+		String Message;
+		byte[] allBytes = message.getBytes();					//récupère message en bytes et insert tous les bytes dans un tableau de type byte 
+
+		StringBuilder stringBuilder = new StringBuilder();		//déclaration du stringBuilder à manipuler et afficher
+		for (byte aByte : allBytes) {
+			String temp = Integer.toBinaryString(aByte); 		//converti string temporaire en chaine binaire
+
+			if (temp.length() < 7) {							//sur 7 bits
+				temp = "0" + temp;								//tous les bytes à 0
+			}
+			stringBuilder.append(temp);							//initialisation du stringBuilder à 0
+		}
+		
+		String binaryString = stringBuilder.toString();			//récupération du contenu du stringBuilder dans une string
+		
+		stringBuilder = new StringBuilder();					//Nouveau stringBuilder déclaré
+		stringBuilder.append("0");								//insert du premier 0 au début de chaîne
+		char precedent = 2;										//precedent à 2 si premier bit
+		
+		for (int i = 0; i < binaryString.length(); i++) {
+			char c = binaryString.charAt(i);
+
+			if (c == '0') {										//si bit = 0
+				if (precedent == 1) {							
+					stringBuilder.append(' ').append(0).append(0).append(' ').append(0);	//début série de 0
+				} else if (precedent == 2) {					
+					stringBuilder.append('0').append(' ').append('0');	//si premier bit, ajout du seconde zero, espace, zero.
+				} else {										
+					stringBuilder.append('0');					//si precedent = 0, ajout du 0 pour comptage des 0 qui se suivent
+				}
+				precedent = 0;	//valeur de précédent mise à 0 pour le tour suivant !
+			} else {											//sinon (si bit = 1)
+				if (precedent == 1) {							
+					stringBuilder.append('0');					//si precedent = 1, ajout du 0 pour comptage des 1 qui se suivent
+				} else if (precedent == 2) {					
+					stringBuilder.append(' ').append('0');		//si premier bit, ajoute espace, zero.
+				} else {										
+					stringBuilder.append(' ').append('0').append(' ').append('0');	//début série de 1
+				}
+				precedent = 1;	//valeur de précédent mise à 1 pour le tour suivant !
+			}
+		}
+		Message = stringBuilder.toString();
+		return Message;
+	}
+}
