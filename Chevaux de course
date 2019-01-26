@@ -1,0 +1,48 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+	public static void main(String args[]) {
+		@SuppressWarnings("resource")
+		Scanner in = new Scanner(System.in);
+
+		List<Integer> liste = new ArrayList<Integer>();
+
+		int N = in.nextInt();
+		int D = Integer.MAX_VALUE;
+		int D_Min = Integer.MAX_VALUE;
+		int currentHorse = Integer.MAX_VALUE;
+		int nextHorse;
+
+		for (int i = 0; i < N; i++) {
+			int pi = in.nextInt();
+
+			liste.add(pi);
+
+		}
+
+		Collections.sort(liste);
+
+		for (int i = 0; i < liste.size() - 1; i++) {
+			currentHorse = liste.get(i);
+			nextHorse = liste.get(i + 1);
+			D = nextHorse - currentHorse;
+			
+			if (D < D_Min) {
+				D_Min = D;
+			}
+			
+			if (D < 0) {
+				D = -D;
+			}
+		}
+
+		System.out.println(D_Min);
+	}
+}
