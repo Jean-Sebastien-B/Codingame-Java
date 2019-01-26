@@ -1,0 +1,79 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+	@SuppressWarnings("resource")
+	public static void main(String args[]) {
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		if (in.hasNextLine()) {
+			in.nextLine();
+		}
+		
+		for (int i = 0; i < n; i++) {
+			String card = in.nextLine();
+			card = card.replaceAll(" ", "");
+			
+			if (!isValidID(card)) // Appel de methode pour vérifier la non-validité de l'ID card
+			{
+				System.out.println("NO");
+			} else {
+				System.out.println("YES");
+			}
+		}
+	}
+
+	// Première étape : vérification de longeur de l'ID (16 digits)
+	private static boolean isValidID(String card) {
+
+		if (card.length() == 16) { // Test de longueur 16
+			return isValidID16(card); // Si oui, appel de la methode correspondante
+		} else {
+			return false;
+		}
+	}
+
+	// Deuxième étape : ID16 -> Vérification du contenu de la String
+	private static boolean isValidID16(String card) {
+		// Somme des digits pairs (index 0 à 14)
+		int OddSum = 0;
+		boolean oddIndex = false; // Boolean index pair (index 0 = false)
+
+		for (int i = 0; i < card.length() - 1; i ++) {
+			oddIndex = !oddIndex; // Change de valeur à chaque tour de boucle
+			if (oddIndex) {
+				int currentDigit = (card.charAt(i) - '0') * 2; // Digit en cours égal à sa valeur numérique * 2
+
+				if (currentDigit > 8) { // soustraction de 9 sur les digits supérieurs à 8
+					currentDigit = currentDigit - 9;
+				}
+				OddSum += (currentDigit); // Somme des digits après traitements
+			}
+			
+		}
+
+		// Somme des digits impairs (index 1 à 15)
+		int EvenSum = 0;
+		boolean evenIndex = false; // Boolean index impair (index 0 = false)
+
+		for (int i = 0; i < card.length(); i++) {
+			int currentDigit = card.charAt(i) - '0'; // Digit en cours égal à sa valeur numérique - 0
+			EvenSum += (currentDigit - (evenIndex ? 0 : currentDigit)); // Somme des digits selon index
+			evenIndex = !evenIndex; // Change de valeur à chaque tour de boucle
+		}
+
+		int Sum = OddSum + EvenSum;
+		
+		if (Sum % 10 == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
