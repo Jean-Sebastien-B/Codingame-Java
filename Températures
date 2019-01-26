@@ -1,0 +1,36 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+    
+	public static void main(String args[]) {
+
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		in.nextLine();
+
+		int result = 5526;
+
+		if (n == 0) {
+			result = n;
+		}
+
+		for (int i = 0; i < n; i++) {
+			int t = in.nextInt(); // a temperature expressed as an integer ranging from -273 to 5526
+
+			if (Math.abs(result) > Math.abs(t) || Math.abs(result) == Math.abs(t) && t > result) {
+				result = t;
+			}
+		}
+
+		System.out.println(result);
+	}
+}
+
+			
