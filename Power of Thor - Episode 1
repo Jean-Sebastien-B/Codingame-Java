@@ -1,0 +1,67 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ * ---
+ * Hint: You can use the debug stream to print initialTX and initialTY, if Thor seems not follow your orders.
+ **/
+class Player {
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        int lightX = in.nextInt(); // the X position of the light of power
+        int lightY = in.nextInt(); // the Y position of the light of power
+        int initialTX = in.nextInt(); // Thor's starting X position
+        int initialTY = in.nextInt(); // Thor's starting Y position
+        int differenceX = lightX - initialTX;
+        int differenceY = lightY - initialTY;
+
+        // game loop
+        while (true) {
+            int remainingTurns = in.nextInt(); // The remaining amount of turns Thor can move. Do not remove this line.
+            
+            if (differenceY > 0 && differenceX > 0) {
+            	System.out.println("SE");
+            	differenceY--;
+            	differenceX--;
+            }
+            
+            if (differenceY > 0 && differenceX < 0) {
+            	System.out.println("SW");
+            	differenceY--;
+            	differenceX++;
+            }
+            
+            if (differenceY < 0 && differenceX > 0) {
+            	System.out.println("NE");
+            	differenceY++;
+            	differenceX--;
+            }
+            
+            if (differenceY < 0 && differenceX < 0) {
+            	System.out.println("NW");
+            	differenceY++;
+            	differenceX++;
+            }
+            
+            if (differenceY > 0 && differenceX == 0){
+                System.out.println("S");
+                differenceY--;
+            }else if(differenceY < 0 && differenceX == 0){
+                System.out.println("N");
+                differenceY++;
+            }
+            if (differenceX > 0 && differenceY == 0){
+                System.out.println("E");
+                differenceX--;
+            }else if(differenceX < 0 && differenceY == 0){
+                System.out.println("W");
+                differenceX++;
+            }
+            
+        }
+    }
+}
