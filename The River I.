@@ -1,0 +1,35 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+    @SuppressWarnings("resource")
+	public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        long r1 = in.nextLong();
+        long r2 = in.nextLong();
+        Map<Long,Boolean> river = new HashMap<Long,Boolean>();          //Création d'une collection de type Map (parcours rapide, pas de doublons)
+        while (true) {
+            river.put(r1,true);                                         //clé/valeur = r1/true
+            river.put(r2,true);                                         //clé/valeur = r2/true
+            r1 = getSum(r1);                                            //appel methode sur r1 pour calcul des sommes
+            r2 = getSum(r2);                                            //appel methode sur r2 pour calcul des sommes
+            if (river.containsKey(r1)) {System.out.println(r1);return;} //si r1 rencontre la riviere, retourne r1
+            if (river.containsKey(r2)) {System.out.println(r2);return;} //si r2 rencontre la riviere, retourne r2
+        }
+    }
+    
+    static long getSum(long num) {
+        long sum = num;                                                 //num = r1 ou r2
+        while (num>0) {                                                 
+            sum+=num%10;                                                //récupération du dernier digit de num et ajout à sum
+            num/=10;                                                    //récupération de la partie restante
+        }
+        return sum;                                                     //retourne valeur de num + la somme de ses digits
+    }
+}
