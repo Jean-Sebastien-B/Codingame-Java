@@ -1,0 +1,53 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+    public static void main(String args[]) {
+    	
+        @SuppressWarnings("resource")
+		Scanner in = new Scanner(System.in);
+        int N = in.nextInt(); // Number of elements which make up the association table.
+        int Q = in.nextInt(); // Number Q of file names to be analyzed.
+        
+        Map<String, String> mimeType = new HashMap<String, String>();   //Declaration liste type Map<Key, Value> (avantages : vitesse de parcours de liste et pas de doublon clés+valeurs)
+        List<String> files = new ArrayList<String>();                   //Declaration d'une arrayList des noms de fichiers
+        
+        for (int i = 0; i < N; i++) {                                   //Parcours de la liste files
+            String EXT = in.next();                                     //Declaration variable pour les extensions
+            String MT = in.next();                                      //Declaration variable pour les types MIME.
+            
+            mimeType.put(EXT.toLowerCase(), MT);                        //Stockage EXT(minuscules) et Type Mime dans Map
+            in.nextLine();                                              //Saut de ligne à chaque insert
+        }
+        
+        for (int i = 0; i < Q; i++) {                                   // Parcours des noms de fichiers.
+            String FNAME = in.nextLine();                               // 1 par ligne
+            files.add(FNAME.toLowerCase());                             //Ajout du nom de fichier
+        }
+            
+            
+        for (String file : files) {                                     //foreach sur chaque fichier
+            int dot = file.lastIndexOf(".");                            //Recherche du dernier point
+            String ext = file.substring(dot+1);                         //L'extension est après le point
+            
+            if( dot == -1 || !ext.matches("\\w+") ) {                   //si rien apres le point ou caracter different d'une ou plusieurs lettres ou chiffres
+                System.out.println("UNKNOWN");                          //pas de match
+            }
+            else { 
+               if (mimeType.keySet().contains(ext)) {                   //Si le type Mime contient l'extension
+                    System.out.println(mimeType.get(ext));              //match
+                }
+                else {
+                   System.out.println("UNKNOWN");                       //dans tout autre cas : pas de match
+                }    
+            }
+        }
+    }
+}
+
