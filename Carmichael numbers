@@ -1,0 +1,69 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+    @SuppressWarnings("resource")
+	public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+
+        List<Integer> NumberList = new ArrayList<Integer>();
+        
+        NumberList.add(561);
+        NumberList.add(1105);
+        NumberList.add(1729);
+        NumberList.add(2465);
+        NumberList.add(2821);
+        NumberList.add(6601);
+        NumberList.add(8911);
+        NumberList.add(10585);
+        NumberList.add(15841);
+        NumberList.add(29341);
+        NumberList.add(41041);
+        NumberList.add(46657);
+        NumberList.add(52633);
+        NumberList.add(62745);
+        NumberList.add(63973);
+        NumberList.add(75361);
+        NumberList.add(101101);
+        NumberList.add(115921);
+        NumberList.add(126217);
+        NumberList.add(162401);
+        NumberList.add(172081);
+        NumberList.add(188461);
+        NumberList.add(252601);
+        NumberList.add(278545);
+        NumberList.add(294409);
+        NumberList.add(314821);
+        NumberList.add(334153);
+        NumberList.add(340561);
+        NumberList.add(399001);
+        NumberList.add(410041);
+        NumberList.add(449065);
+        NumberList.add(488881);
+        NumberList.add(512461);
+        NumberList.add(530881);
+        NumberList.add(552721);
+        NumberList.add(656601);
+        NumberList.add(658801);
+        NumberList.add(670033);
+        NumberList.add(748657);
+        NumberList.add(825265);
+        NumberList.add(658801);
+        NumberList.add(852841);
+        NumberList.add(997633);
+        NumberList.add(1024651);
+   
+        if (NumberList.contains(n)) {
+			System.out.println("YES");
+		} else {
+			System.out.println("NO");
+		}
+    }
+}
